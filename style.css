@@ -1,0 +1,59 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('messi.jpg'); /* Arka plan resmi yolu */
+    background-size: cover; /* Resmin ekranı tamamen kaplamasını sağlar */
+    background-position: center; /* Resmin ortalanmasını sağlar */
+    background-repeat: no-repeat; /* Resmin tekrar etmemesini sağlar */
+}
+
+.quiz-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Beyaz arka planın şeffaflık ayarı */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+#question {
+    font-size: 30px;
+    font-family: 'Verdana', sans-serif;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+button.option-btn {
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button.option-btn:hover {
+    background-color: #45a049;
+}
+
+button.wrong {
+    background-color: #f44336;
+}
+
+button.correct {
+    background-color: #4CAF50;
+}
+
+#result {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 18px;
+}
