@@ -1,178 +1,24 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Genel Kültür Sorusu</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-image: url('arka-plan.jpg'); /* Arka plan resminin adı */
-      background-size: cover;
-      color: white;
-      text-align: center;
-      padding: 50px;
-    }
-
-    .question-box {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .option {
-      display: block;
-      background-color: #444;
-      color: white;
-      padding: 15px;
-      margin: 10px auto;
-      width: 300px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .option:hover {
-      background-color: #666;
-    }
-
-    .correct {
-      background-color: green !important;
-    }
-
-    .incorrect {
-      background-color: red !important;
-    }
-
-    #result {
-      font-size: 20px;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genel Kültür Sorusu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="question-box" id="question"></div>
-  <div id="options"></div>
-  <div id="result"></div>
+    <div class="quiz-container">
+        <h2>Genel Kültür Sorusu</h2>
+        <p id="question">Soru Buraya Gelecek</p>
+        <div id="options">
+            <button class="option-btn" onclick="checkAnswer(this)">Seçenek A</button>
+            <button class="option-btn" onclick="checkAnswer(this)">Seçenek B</button>
+            <button class="option-btn" onclick="checkAnswer(this)">Seçenek C</button>
+            <button class="option-btn" onclick="checkAnswer(this)">Seçenek D</button>
+        </div>
+        <p id="result"></p>
+    </div>
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const qr = urlParams.get('qr') || "1"; // Varsayılan qr=1
-
-    const questions = [
-      {
-        question: "Türkiye'nin başkenti neresidir?",
-        options: ["İstanbul", "Ankara", "İzmir", "Bursa"],
-        answer: 1
-      },
-      {
-        question: "Dünya'nın en büyük okyanusu hangisidir?",
-        options: ["Hint", "Atlas", "Büyük Okyanus", "Arktik"],
-        answer: 2
-      },
-      {
-        question: "Ay'ın Dünya etrafında dönüş süresi nedir?",
-        options: ["24 saat", "7 gün", "27 gün", "365 gün"],
-        answer: 2
-      },
-      {
-        question: "Osmanlı Devleti'nin kurucusu kimdir?",
-        options: ["Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "Fatih Sultan Mehmet", "Osman Gazi"],
-        answer: 3
-      },
-      {
-        question: "İngiltere'nin para birimi nedir?",
-        options: ["Euro", "Sterlin", "Dolar", "Frank"],
-        answer: 1
-      },
-      {
-        question: "En uzun nehir hangisidir?",
-        options: ["Nil", "Amazon", "Mississippi", "Yangtze"],
-        answer: 0
-      },
-      {
-        question: "İlk Türk devleti hangisidir?",
-        options: ["Göktürkler", "Hunlar", "Selçuklular", "Osmanlılar"],
-        answer: 1
-      },
-      {
-        question: "Einstein'ın ünlü denklemi nedir?",
-        options: ["E=mc^2", "F=ma", "V=IR", "a^2+b^2=c^2"],
-        answer: 0
-      },
-      {
-        question: "Türkiye kaç coğrafi bölgeye ayrılır?",
-        options: ["5", "6", "7", "8"],
-        answer: 2
-      },
-      {
-        question: "En çok konuşulan dil hangisidir?",
-        options: ["İngilizce", "İspanyolca", "Çince", "Arapça"],
-        answer: 2
-      },
-      {
-        question: "İnsan vücudunda kaç kemik vardır?",
-        options: ["206", "201", "196", "212"],
-        answer: 0
-      },
-      {
-        question: "Hangisi gezegen değildir?",
-        options: ["Mars", "Jüpiter", "Ay", "Venüs"],
-        answer: 2
-      },
-      {
-        question: "Atatürk hangi yıl doğmuştur?",
-        options: ["1880", "1881", "1890", "1900"],
-        answer: 1
-      },
-      {
-        question: "Mona Lisa tablosu kime aittir?",
-        options: ["Picasso", "Van Gogh", "Leonardo da Vinci", "Michelangelo"],
-        answer: 2
-      },
-      {
-        question: "Hangisi bir yazılım dili değildir?",
-        options: ["Python", "Java", "C++", "HTML"],
-        answer: 3
-      }
-    ];
-
-    const qrLinks = {
-      "1": ["https://link1a.com", "https://link1b.com", "https://link1c.com"],
-      "2": ["https://link2a.com", "https://link2b.com", "https://link2c.com"],
-      "3": ["https://link3a.com", "https://link3b.com", "https://link3c.com"],
-      "4": ["https://link4a.com", "https://link4b.com", "https://link4c.com"],
-      "5": ["https://link5a.com", "https://link5b.com", "https://link5c.com"]
-    };
-
-    const questionIndex = sessionStorage.getItem("questionIndex") || Math.floor(Math.random() * questions.length);
-    sessionStorage.setItem("questionIndex", questionIndex);
-    const selectedQuestion = questions[questionIndex];
-
-    const qBox = document.getElementById("question");
-    const optBox = document.getElementById("options");
-    const resultBox = document.getElementById("result");
-
-    qBox.textContent = selectedQuestion.question;
-
-    selectedQuestion.options.forEach((opt, index) => {
-      const btn = document.createElement("div");
-      btn.className = "option";
-      btn.textContent = opt;
-      btn.onclick = () => {
-        if (index === selectedQuestion.answer) {
-          btn.classList.add("correct");
-          resultBox.textContent = "Tebrikler, doğru cevap!";
-          setTimeout(() => {
-            const links = qrLinks[qr];
-            const randomLink = links[Math.floor(Math.random() * links.length)];
-            window.location.href = randomLink;
-          }, 1500);
-        } else {
-          btn.classList.add("incorrect");
-          resultBox.textContent = "Tekrar deneyin!";
-        }
-      };
-      optBox.appendChild(btn);
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
