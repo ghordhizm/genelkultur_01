@@ -2,15 +2,13 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genel Kültür Quiz</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
             background-image: url('messi.jpg');
             background-size: cover;
             background-position: center;
@@ -18,32 +16,32 @@
         }
 
         .quiz-container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            margin-top: 20px;
         }
 
         #question {
-            font-size: 36px;
-            font-family: 'Verdana', sans-serif;
+            font-size: 22px;
             font-weight: bold;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         button.option-btn {
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 15px;
-            margin: 15px 0;
-            width: 85%;
-            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            width: 100%;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         button.option-btn:hover {
@@ -51,214 +49,207 @@
         }
 
         button.wrong {
-            background-color: #f44336;
+            background-color: #f44336 !important;
         }
 
         button.correct {
-            background-color: #4CAF50;
+            background-color: #4CAF50 !important;
         }
 
         #result {
             font-weight: bold;
-            margin-top: 20px;
-            font-size: 20px;
+            margin-top: 15px;
+            font-size: 18px;
+            text-align: center;
         }
 
-        /* 5 resim için stil */
         .image-choice {
             display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
         }
 
-        .image-choice img {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
+        .image-item {
+            width: 30%;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.2s ease;
         }
 
-        .image-choice img:hover {
-            transform: scale(1.1);
+        .image-label {
+            margin-top: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
         }
 
         .links-container {
-            margin-top: 20px;
+            margin-top: 15px;
+            text-align: center;
         }
 
         .link-btn {
+            display: inline-block;
             background-color: #008CBA;
             color: white;
             padding: 10px 15px;
-            margin: 10px;
+            margin: 6px;
             border-radius: 5px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .link-btn:hover {
             background-color: #005f7f;
         }
+
+        @media (max-width: 600px) {
+            .image-item {
+                width: 45%;
+            }
+
+            #question {
+                font-size: 18px;
+            }
+
+            button.option-btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .link-btn {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="quiz-container" id="quiz-container">
-        <!-- 5 Resimli Seçenek -->
-        <div class="image-choice">
-            <img src="messi.jpg" alt="Seçenek 1" onclick="showQuestion(0)">
-            <img src="messi.jpg" alt="Seçenek 2" onclick="showQuestion(1)">
-            <img src="messi.jpg" alt="Seçenek 3" onclick="showQuestion(2)">
-            <img src="messi.jpg" alt="Seçenek 4" onclick="showQuestion(3)">
-            <img src="messi.jpg" alt="Seçenek 5" onclick="showQuestion(4)">
+<div class="quiz-container" id="quiz-container">
+    <div class="image-choice">
+        <div class="image-item">
+            <img src="kabak.png" alt="Kabak Kemane" onclick="showQuestion(0)">
+            <div class="image-label">Kabak Kemane</div>
+        </div>
+        <div class="image-item">
+            <img src="kemence.png" alt="Kemençe" onclick="showQuestion(1)">
+            <div class="image-label">Kemençe</div>
+        </div>
+        <div class="image-item">
+            <img src="ney.png" alt="Ney" onclick="showQuestion(2)">
+            <div class="image-label">Ney</div>
+        </div>
+        <div class="image-item">
+            <img src="tambur.png" alt="Tambur" onclick="showQuestion(3)">
+            <div class="image-label">Tambur</div>
+        </div>
+        <div class="image-item">
+            <img src="lavta.png" alt="Lavta" onclick="showQuestion(4)">
+            <div class="image-label">Lavta</div>
         </div>
     </div>
+</div>
 
-    <script>
-        const sorular = [
-            {
-                soru: "Türkiye'nin başkenti neresidir?",
-                secenekler: ["İstanbul", "Ankara", "İzmir", "Bursa"],
-                dogru: 1
-            },
-            {
-                soru: "En uzun nehir hangisidir?",
-                secenekler: ["Amazon", "Nil", "Kızılırmak", "Fırat"],
-                dogru: 1
-            },
-            {
-                soru: "Hangisi bir gezegen değildir?",
-                secenekler: ["Mars", "Venüs", "Güneş", "Jüpiter"],
-                dogru: 2
-            },
-            {
-                soru: "Hangi ülkenin başkenti Tokyo'dur?",
-                secenekler: ["Çin", "Japonya", "Güney Kore", "Hindistan"],
-                dogru: 1
-            },
-            {
-                soru: "Dünyanın en yüksek dağı hangisidir?",
-                secenekler: ["Everest", "K2", "Aconcagua", "Denali"],
-                dogru: 0
-            },
-            {
-                soru: "Hangi gezegen Güneş'e en yakın olandır?",
-                secenekler: ["Venüs", "Merkür", "Mars", "Jüpiter"],
-                dogru: 1
-            },
-            {
-                soru: "Dünyanın en büyük okyanusu hangisidir?",
-                secenekler: ["Atlas Okyanusu", "Hint Okyanusu", "Arktik Okyanusu", "Pasifik Okyanusu"],
-                dogru: 3
-            },
-            {
-                soru: "Ay hangi gezegenin uydusudur?",
-                secenekler: ["Venüs", "Mars", "Jüpiter", "Dünya"],
-                dogru: 3
-            },
-            {
-                soru: "Hangisi ilk Türk Cumhuriyeti'dir?",
-                secenekler: ["Türkiye", "Azerbaycan", "Kazakistan", "Türkmenistan"],
-                dogru: 1
-            },
-            {
-                soru: "Hangisi İslam'ın 5 şartından biri değildir?",
-                secenekler: ["Namaz", "Oruç", "Sadaka", "Zekat"],
-                dogru: 2
-            },
-            {
-                soru: "Hangisi en büyük deniz canlısıdır?",
-                secenekler: ["Balina", "Kurtbalığı", "Yunus", "Deniz Yılanı"],
-                dogru: 0
-            },
-            {
-                soru: "Çin Seddi hangi amaçla yapılmıştır?",
-                secenekler: ["Savunma", "Yol", "Tarım", "Eğitim"],
-                dogru: 0
-            },
-            {
-                soru: "En yüksek sıcaklık hangi gezegende ölçülmüştür?",
-                secenekler: ["Venüs", "Mars", "Jüpiter", "Satürn"],
-                dogru: 0
-            },
-            {
-                soru: "Hangisi Türkiye'nin en büyük gölüdür?",
-                secenekler: ["Van Gölü", "Erçek Gölü", "Tuz Gölü", "Beyşehir Gölü"],
-                dogru: 0
-            },
-            {
-                soru: "Hangisi Türk dilinin ilk sözlüğüdür?",
-                secenekler: ["Divanü Lügati't-Türk", "Kutadgu Bilig", "Orhun Yazıtları", "Türk Dil Kurumu Sözlüğü"],
-                dogru: 0
-            },
-            {
-                soru: "Türk tarihindeki ilk medeniyet hangi bölgededir?",
-                secenekler: ["Orta Asya", "Anadolu", "Mezopotamya", "Mısır"],
-                dogru: 0
-            }
-        ];
+<script>
+    let cevapVerildi = false;
 
-        const links = [
-            ["https://www.youtube.com/watch?v=xyz1", "https://www.youtube.com/watch?v=xyz2", "https://www.youtube.com/watch?v=xyz3"], // Resim 1
-            ["https://www.youtube.com/watch?v=abc1", "https://www.youtube.com/watch?v=abc2", "https://www.youtube.com/watch?v=abc3"], // Resim 2
-            ["https://www.youtube.com/watch?v=mno1", "https://www.youtube.com/watch?v=mno2", "https://www.youtube.com/watch?v=mno3"], // Resim 3
-            ["https://www.youtube.com/watch?v=pqr1", "https://www.youtube.com/watch?v=pqr2", "https://www.youtube.com/watch?v=pqr3"], // Resim 4
-            ["https://www.youtube.com/watch?v=stu1", "https://www.youtube.com/watch?v=stu2", "https://www.youtube.com/watch?v=stu3"]  // Resim 5
-        ];
-
-        const quizContainer = document.getElementById("quiz-container");
-
-        function showQuestion(selectedIndex) {
-            // 5 resimden sonra soruyu göster
-            const aktifSoru = sorular[Math.floor(Math.random() * sorular.length)];
-
-            // Resimleri gizle
-            document.querySelector('.image-choice').style.display = 'none';
-
-            // Soruyu ve cevapları göster
-            const questionHTML = `
-                <div id="question">${aktifSoru.soru}</div>
-                <button class="option-btn" onclick="cevapKontrol(0, ${aktifSoru.dogru}, ${selectedIndex})">${aktifSoru.secenekler[0]}</button>
-                <button class="option-btn" onclick="cevapKontrol(1, ${aktifSoru.dogru}, ${selectedIndex})">${aktifSoru.secenekler[1]}</button>
-                <button class="option-btn" onclick="cevapKontrol(2, ${aktifSoru.dogru}, ${selectedIndex})">${aktifSoru.secenekler[2]}</button>
-                <button class="option-btn" onclick="cevapKontrol(3, ${aktifSoru.dogru}, ${selectedIndex})">${aktifSoru.secenekler[3]}</button>
-                <div id="result"></div>
-            `;
-            quizContainer.innerHTML = questionHTML;
+    const sorular = [
+        {
+            soru: "Türkiye'nin başkenti neresidir?",
+            secenekler: ["İstanbul", "Ankara", "İzmir", "Bursa"],
+            dogru: 1
+        },
+        {
+            soru: "En uzun nehir hangisidir?",
+            secenekler: ["Amazon", "Nil", "Kızılırmak", "Fırat"],
+            dogru: 1
+        },
+        {
+            soru: "Hangisi bir gezegen değildir?",
+            secenekler: ["Mars", "Venüs", "Güneş", "Jüpiter"],
+            dogru: 2
+        },
+        {
+            soru: "Hangi ülkenin başkenti Tokyo'dur?",
+            secenekler: ["Çin", "Japonya", "Güney Kore", "Hindistan"],
+            dogru: 1
+        },
+        {
+            soru: "Dünyanın en yüksek dağı hangisidir?",
+            secenekler: ["Everest", "K2", "Aconcagua", "Denali"],
+            dogru: 0
         }
+    ];
 
-        function cevapKontrol(index, dogru, selectedIndex) {
-            const btns = document.querySelectorAll(".option-btn");
-            const result = document.getElementById("result");
+    const links = [
+        ["https://youtube.com/1a", "https://youtube.com/1b", "https://youtube.com/1c"],
+        ["https://youtube.com/2a", "https://youtube.com/2b", "https://youtube.com/2c"],
+        ["https://youtube.com/3a", "https://youtube.com/3b", "https://youtube.com/3c"],
+        ["https://youtube.com/4a", "https://youtube.com/4b", "https://youtube.com/4c"],
+        ["https://youtube.com/5a", "https://youtube.com/5b", "https://youtube.com/5c"]
+    ];
 
-            if (index === dogru) {
-                btns[index].classList.add("correct");
-                result.textContent = "Tebrikler, doğru cevap! Şimdi müzikleri dinleyebilirsiniz.";
-                
-                // Doğru cevap verildiyse linkleri göster
-                showLinks(selectedIndex);
-            } else {
-                btns[index].classList.add("wrong");
-                result.textContent = "Yanlış cevap! Tekrar deneyin.";
-            }
+    const quizContainer = document.getElementById("quiz-container");
+
+    function showQuestion(selectedIndex) {
+        cevapVerildi = false;
+        const aktifSoru = sorular[Math.floor(Math.random() * sorular.length)];
+        document.querySelector('.image-choice').style.display = 'none';
+
+        const questionHTML = `
+            <div id="question">${aktifSoru.soru}</div>
+            ${aktifSoru.secenekler.map((secenek, i) => `
+                <button class="option-btn" onclick="cevapKontrol(${i}, ${aktifSoru.dogru}, ${selectedIndex})">${secenek}</button>
+            `).join('')}
+            <div id="result"></div>
+        `;
+        quizContainer.innerHTML = questionHTML;
+    }
+
+    function cevapKontrol(index, dogru, selectedIndex) {
+        if (cevapVerildi) return;
+        cevapVerildi = true;
+
+        const btns = document.querySelectorAll(".option-btn");
+        const result = document.getElementById("result");
+
+        btns.forEach(btn => btn.disabled = true);
+
+        if (index === dogru) {
+            btns[index].classList.add("correct");
+            result.textContent = "Tebrikler, doğru cevap!";
+            showLinks(selectedIndex);
+        } else {
+            btns[index].classList.add("wrong");
+            result.textContent = "Yanlış cevap! Tekrar deneyemezsiniz.";
         }
+    }
 
-        function showLinks(selectedIndex) {
-            const linkContainer = document.createElement('div');
-            linkContainer.className = "links-container";
+    function showLinks(selectedIndex) {
+        const linkContainer = document.createElement('div');
+        linkContainer.className = "links-container";
 
-            links[selectedIndex].forEach((link, index) => {
-                const linkBtn = document.createElement('a');
-                linkBtn.href = link;
-                linkBtn.className = "link-btn";
-                linkBtn.textContent = `Link ${index + 1}`;
-                linkContainer.appendChild(linkBtn);
-            });
+        links[selectedIndex].forEach((link, index) => {
+            const linkBtn = document.createElement('a');
+            linkBtn.href = link;
+            linkBtn.className = "link-btn";
+            linkBtn.textContent = `Link ${index + 1}`;
+            linkBtn.target = "_blank";
+            linkContainer.appendChild(linkBtn);
+        });
 
-            quizContainer.appendChild(linkContainer);
-        }
-    </script>
+        quizContainer.appendChild(linkContainer);
+    }
+</script>
 
 </body>
 </html>
+
