@@ -162,40 +162,112 @@
     let cevapVerildi = false;
 
     const sorular = [
-        {
-            soru: "Türkiye'nin başkenti neresidir?",
-            secenekler: ["İstanbul", "Ankara", "İzmir", "Bursa"],
-            dogru: 1
-        },
-        {
-            soru: "En uzun nehir hangisidir?",
-            secenekler: ["Amazon", "Nil", "Kızılırmak", "Fırat"],
-            dogru: 1
-        },
-        {
-            soru: "Hangisi bir gezegen değildir?",
-            secenekler: ["Mars", "Venüs", "Güneş", "Jüpiter"],
-            dogru: 2
-        },
-        {
-            soru: "Hangi ülkenin başkenti Tokyo'dur?",
-            secenekler: ["Çin", "Japonya", "Güney Kore", "Hindistan"],
-            dogru: 1
-        },
-        {
-            soru: "Dünyanın en yüksek dağı hangisidir?",
-            secenekler: ["Everest", "K2", "Aconcagua", "Denali"],
-            dogru: 0
-        }
-    ];
+    {
+        soru: "Türkiye'nin başkenti neresidir?",
+        secenekler: ["İstanbul", "Ankara", "İzmir", "Bursa"],
+        dogru: 1
+    },
+    {
+        soru: "En uzun nehir hangisidir?",
+        secenekler: ["Amazon", "Nil", "Kızılırmak", "Fırat"],
+        dogru: 1
+    },
+    {
+        soru: "Hangisi bir gezegen değildir?",
+        secenekler: ["Mars", "Venüs", "Güneş", "Jüpiter"],
+        dogru: 2
+    },
+    {
+        soru: "Hangi ülkenin başkenti Tokyo'dur?",
+        secenekler: ["Çin", "Japonya", "Güney Kore", "Hindistan"],
+        dogru: 1
+    },
+    {
+        soru: "Dünyanın en yüksek dağı hangisidir?",
+        secenekler: ["Everest", "Nemrut", "Aconcagua", "Denali"],
+        dogru: 0
+    },
+    {
+        soru: "Fransız İhtilali hangi yılda gerçekleşmiştir?",
+        secenekler: ["1789", "1812", "1492", "1914"],
+        dogru: 0
+    },
+    {
+        soru: "İlk çağda yazıyı bulan uygarlık hangisidir?",
+        secenekler: ["Sümerler", "Mısırlılar", "Hititler", "Asurlar"],
+        dogru: 0
+    },
+    {
+        soru: "DNA'nın çift sarmal yapısını kim keşfetti?",
+        secenekler: ["Newton ve Darwin", "Watson ve Crick", "Pasteur ve Mendel", "Einstein ve Bohr"],
+        dogru: 1
+    },
+    {
+        soru: "Hangi element periyodik tabloda 'O' sembolü ile gösterilir?",
+        secenekler: ["Altın", "Oksijen", "Gümüş", "Azot"],
+        dogru: 1
+    },
+    {
+        soru: "Avrupa Birliği'nin merkezi hangi şehirdedir?",
+        secenekler: ["Paris", "Berlin", "Brüksel", "Amsterdam"],
+        dogru: 2
+    },
+    {
+        soru: "İstanbul'u fetheden Osmanlı padişahı kimdir?",
+        secenekler: ["Yavuz Sultan Selim", "Fatih Sultan Mehmet", "Kanuni Sultan Süleyman", "Orhan Gazi"],
+        dogru: 1
+    },
+    {
+        soru: "Dünyanın en kalabalık ülkesi hangisidir?",
+        secenekler: ["ABD", "Endonezya", "Hindistan", "Çin"],
+        dogru: 3
+    },
+    {
+        soru: "Hangisi bir şiir ölçüsü değildir?",
+        secenekler: ["Hece", "Aruz", "Serbest", "Nota"],
+        dogru: 3
+    },
+    {
+        soru: "Ay'ın Dünya etrafında dönme süresi yaklaşık kaç gündür?",
+        secenekler: ["7", "15", "21", "27"],
+        dogru: 3
+    },
+    {
+        soru: "Hangisi Türkiye'de UNESCO Dünya Mirası Listesi'ndedir?",
+        secenekler: ["Ayasofya", "Anıtkabir", "Atatürk Orman Çiftliği", "Boğaziçi Köprüsü"],
+        dogru: 0
+    }
+];
 
-    const links = [
-        ["https://youtube.com/1a", "https://youtube.com/1b", "https://youtube.com/1c"],
-        ["https://youtube.com/2a", "https://youtube.com/2b", "https://youtube.com/2c"],
-        ["https://youtube.com/3a", "https://youtube.com/3b", "https://youtube.com/3c"],
-        ["https://youtube.com/4a", "https://youtube.com/4b", "https://youtube.com/4c"],
-        ["https://youtube.com/5a", "https://youtube.com/5b", "https://youtube.com/5c"]
-    ];
+
+const links = [
+  [ // Durum 1
+    "https://youtu.be/7ylTzg7P9BA?si=eW8-yPN4C2fyuOSI",
+    "https://youtu.be/9WWYtFjtWO0?si=W2W0hLDL1Ke9lbUY",
+    "https://youtu.be/WitSKJCIEso?si=Uz2tBTcfYgLYkN6y"
+  ],
+  [ // Durum 2
+    "https://youtu.be/cAY74NiRjU8?si=Q8tFE5VtF9rV5yia",
+    "https://youtu.be/sMVanLCCeOE?si=gZr2cQeQVYDTc9EQ",
+    "https://youtu.be/uvNEtHaHkWk?si=Y3CmQQ2CywPTTgjq"
+  ],
+  [ // Durum 3
+    "https://youtu.be/AUppiQs4crw?si=3ydNbyZwEkMtl7JH",
+    "https://youtu.be/T7jpfxke91A?si=kpRPsD9Ii3BXPEeK",
+    "https://youtu.be/WpmE0Q2DWSE?si=x5YEpViawL3uBTka"
+  ],
+  [ // Durum 4
+    "https://youtu.be/WitSKJCIEso?si=2exHHJwjTwbLx_72",
+    "https://youtu.be/QmbS6tdCh1w?si=hy5STakRdeotvoIQ",
+    "https://youtu.be/SXE5XjzQLqw?si=ks7wrQBsKSX9Cgeh"
+  ],
+  [ // Durum 5
+    "https://youtu.be/PKmkH0P-rk8?si=mY0N5aL-VHjR_nn4",
+    "https://youtu.be/0HA9AGaiLLk?si=KwFkyb2w4CFr3soI",
+    "https://youtu.be/urDn8s7OvS4?si=kRbBxN9iAiwqUK6H"
+  ]
+];
+
 
     const quizContainer = document.getElementById("quiz-container");
 
@@ -252,4 +324,5 @@
 
 </body>
 </html>
+
 
